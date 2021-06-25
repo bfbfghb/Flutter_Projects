@@ -1,3 +1,4 @@
+import 'package:flut_os/Apps/battle_naval/battle_naval.dart';
 import 'package:flut_os/Apps/tic_tac_toe/Game.dart';
 import 'package:flut_os/Apps/to_do_list/Principal_Page.dart';
 import 'package:flut_os/Apps/to_do_list/main.dart';
@@ -48,6 +49,21 @@ class _HomeState extends State<Home> {
                     },
                   ),
                     Center(child: Text("To Do List")),
+                ],
+              ),
+            ),
+            Container(
+              width: 150,
+              height: 150,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    child: Image.asset("assets/batalhaNaval.jpeg", width: 100, height: 100,),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Battle_Naval()),);
+                    },
+                  ),
+                    Center(child: Text("Battle Naval")),
                 ],
               ),
             ),
