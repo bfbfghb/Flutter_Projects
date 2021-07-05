@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flut_os/Home/Home.dart';
 import 'package:flut_os/Shared/Variaveis.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +70,7 @@ class _LoginState extends State<Login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 50),
             Text(User.name, style: TextStyle(fontSize: 50),),
             SizedBox(height: 50),
             Center(

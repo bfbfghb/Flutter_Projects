@@ -17,6 +17,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.6
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +34,4 @@ flutter:
     - assets/tictactoe.png
     - assets/to_do_list.jpg
     - assets/batalhaNaval.jpeg
+    - assets/firefox.png

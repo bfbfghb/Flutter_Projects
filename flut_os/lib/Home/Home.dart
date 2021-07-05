@@ -1,4 +1,5 @@
 import 'package:flut_os/Apps/battle_naval/battle_naval.dart';
+import 'package:flut_os/Apps/firefox/firefox.dart';
 import 'package:flut_os/Apps/tic_tac_toe/Game.dart';
 import 'package:flut_os/Apps/to_do_list/Principal_Page.dart';
 import 'package:flut_os/Apps/to_do_list/main.dart';
@@ -6,6 +7,7 @@ import 'package:flut_os/Shared/Variaveis.dart';
 import 'package:flut_os/menu/menu_iniciar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -67,7 +69,23 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-          ],))
+            Container(
+              width: 150,
+              height: 150,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    child: Image.asset("assets/firefox.png", width: 100, height: 100,),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Firefox()),);
+                    },
+                  ),
+                    Center(child: Text("Firefox")),
+                ],
+              ),
+            ),
+          ],)),
+                  Center(child: Text(Variaveis.hour, style: TextStyle(fontSize: 50, color: Colors.white),)),
         ],
       ),
       bottomNavigationBar: ElevatedButton.icon(onPressed: (){

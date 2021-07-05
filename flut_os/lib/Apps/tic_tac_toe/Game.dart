@@ -273,11 +273,9 @@ class _GameState extends State<Game> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppBar(
+                    leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close, color: Colors.red,)),
                     automaticallyImplyLeading: false,
                     title: Center(child: Text("Tic-Tac-Toe")),
-                  actions: [
-                    IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close, color: Colors.red,)),
-                  ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

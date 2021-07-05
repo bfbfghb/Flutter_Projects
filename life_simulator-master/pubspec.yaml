@@ -1,0 +1,29 @@
+name: life_simulator
+description: Life Simulator é um jogo onde se pode trabalhar com sua profissão dos sonhos comprar casas e carros
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  shared_preferences: ^2.0.6
+  intl:
+  flutter_launcher_icons: ^0.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/Logo.png"
+
+flutter:
+  uses-material-design: true
+  #assets:
+  #  - assets/images/Logo.png

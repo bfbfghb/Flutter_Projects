@@ -1,0 +1,31 @@
+para chamar um elemento de uma array colocar
+
+array_test = ["a","b"];
+
+Text(array_test[0]);
+	ou
+Text(array_test.elementAt(0));
+
+3 maneiras de usar o onPressed 
+ 	ElevatedButton(
+              onPressed: responder,
+            ),
+	ElevatedButton(
+              onPressed: () => print('Resposta 2!!!'),
+            ),
+        ElevatedButton(
+              onPressed: () {print("Resposta 3 foi selecionada!");},
+            ),
+	ElevatedButton(
+       	      onPressed: null,
+	//isso desabilita o botão
+            ),
+
+quando quiser colocar algo privador usar UnderLine antes do nome por exemplo
+	var _cpf;
+	//para poder pegar o valor mesmo sendo privado utilizar
+	
+	get cpf {
+	//isso precisa ser na classe na qual foi criada essa variavel
+	 return _cpf;
+	}
