@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:magnumodonto/DataBase/db.dart';
@@ -11,20 +12,37 @@ class Login_ extends StatefulWidget {
 }
 
 class _Login_State extends State<Login_> {
+  var teste;
 
   logar() async{
-    Variaveis.dbUser.connect();
     try {
-      Logar.results = await Variaveis.dbUser.conectar.query('SELECT nome from usuarios WHERE (email = ?) AND (senha = ?)', [Logar.email, Logar.senha]);
-      print(Logar.results!.insertId);
-      
-      Logar.carregaritem = await Variaveis.dbUser.conectar.query('SELECT nome from usuarios');
-        print(Logar.carregaritem);
-      Navigator.pushReplacement<void, void>(context, MaterialPageRoute<void>(builder: (BuildContext context) => const Principal(),),);
-      //carregaritens();
+      await Variaveis.dbUser.connect();
+    } catch (e) {
+      return showDialog(context: context, builder: (BuildContext context){
+        return AlertDialog(title: Text("Login erro"), content: Text("verifique sua internet e tente novamente"), actions: [ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text("Ok"))],);
+      });
+    }
+    try {
+        Logar.results = await Variaveis.dbUser.conectar.query('SELECT nome from usuarios WHERE (email = ?) AND (senha = ?)', [Logar.email, Logar.senha]);
+    //carregaritens();
+        print("Conectado");
     } catch (e) {
       print(e);
-      return AlertDialog(title: Text("Login erro"), content: Text(e.toString()), actions: [ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text("Ok"))],);
+    }
+    if(Logar.results!.length > 0){
+      try {
+        await Variaveis.dbCalendario.ler();
+        print("Carregando");
+        Navigator.pushReplacement<void, void>(context, MaterialPageRoute<void>(builder: (BuildContext context) => Principal(),),);
+      } catch (e) {
+        print(e);
+      }
+    }
+    else if(Logar.results!.length == 0 || Logar.results == null){
+      print("deu erro");
+      return showDialog(context: context, builder: (BuildContext context){
+        return AlertDialog(title: Text("Login erro"), content: Text("Email ou senha incorreta"), actions: [ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text("Ok"))],);
+      });
     }
   }
 
@@ -87,12 +105,9 @@ class _Register_State extends State<Register_> {
 
   registrar() async{
     Variaveis.dbUser.connect();
-
       try {
         Variaveis.dbUser.insert = await Variaveis.dbUser.conectar.query('insert into usuarios (email, senha, nome) values (?, ?, ?)', [Logar.email, Logar.senha, Logar.usuario]);
         print("Senha: ${Logar.senha} \n Usuario: ${Logar.usuario}");
-        Logar.carregaritem = await Variaveis.dbUser.conectar.query('SELECT nome from usuarios');
-        print(Logar.carregaritem);
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Principal())); 
       } catch (e) {
         print(e);

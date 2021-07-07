@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:magnumodonto/Pages/LoadItens_Page.dart';
+import 'package:magnumodonto/Pages/MarcarConsulta_Page.dart';
 import 'package:magnumodonto/Shared/Variaveis.dart';
 
 class Principal extends StatefulWidget {
@@ -22,9 +24,12 @@ class _PrincipalState extends State<Principal> {
               IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close, color: Colors.red,)),
           ],),
           SizedBox(height: 25),
-          TextButton(onPressed: (){}, child: Text("Marcar consulta")),
-          TextButton(onPressed: (){}, child: Text("Ver horarios")),
-          TextButton(onPressed: (){}, child: Text("Ver suas consultas")),
+          TextButton(onPressed: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => MarcarConsulta(),),);
+          }, child: Text("Marcar consulta")),
+          TextButton(onPressed: (){}, child: Text("Fale conosco")),
+          // TextButton(onPressed: (){}, child: Text("Ver horarios")),
+          // TextButton(onPressed: (){}, child: Text("Ver suas consultas")),
           TextButton(onPressed: (){}, child: Text("Conheça os Tratamentos")),
           TextButton(onPressed: (){}, child: Text("sobre nós")),
       ],),
@@ -32,32 +37,26 @@ class _PrincipalState extends State<Principal> {
   }
   @override
   Widget build(BuildContext context) {
-    List carregaritens = Logar.carregaritem!.toList();
-
-    // carregaritens() async{
-    //   try {
-    //   Logar.carregaritem = await Variaveis.dbUser.conectar.query('SELECT nome from usuarios');
-    //     print(Logar.carregaritem);
-    //   } catch (e) {
-    //     print(e);
-    //   }
-    // }
-    // carregaritens();
-    Logar.usuario = Logar.results!.first.values.toString();
+    for (var UserName in Logar.results!) {
+      Logar.usuario = UserName[0];
+    }
     print(Logar.usuario);
     return Scaffold(
       drawer: drawerFunc(),
-      appBar: AppBar(title: Text(Variaveis.title)),
-      body: Column(
-        children: [
-        Text("Seja bem vindo ${Logar.usuario}"),
-        ListView.builder(itemCount: carregaritens.length, itemBuilder: (context, index){
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(width: double.maxFinite, height: 500, child: Text("Olá ${carregaritens[index]}"),),
-          );
-        })
-      ],),
+      appBar: AppBar(title: Text(Variaveis.title),),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+          SizedBox(height: 25,),
+          Text("Suas Consultas", style: TextStyle(fontSize: 25),),
+          SizedBox(height: 25,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Container(height: double.maxFinite, width: double.maxFinite, 
+            child: LoadItens()),
+          ),
+        ],),
+      ),
     );
   }
 }

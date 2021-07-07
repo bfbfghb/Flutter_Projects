@@ -5,7 +5,7 @@ class Variaveis{
   static const title = "Magnum-Odonto";
   static final dbUser = new DBUser();
   static final dbAdmin = new DBAdmin();
-  
+  static final dbCalendario = new Calendario();
 }
 
 class Logar{
@@ -16,7 +16,11 @@ class Logar{
   static var confsenha;
   static var verificarsenha;
   static var verificaremail;
-  static Results ?carregaritem;
+
+  static Results ?carregarEmail;
+  static Results ?carregarNome;
+  static Results ?carregarMes;
+  static Results ?carregarDia;
 }
 
 class DBLogin{
